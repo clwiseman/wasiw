@@ -129,20 +129,18 @@ elements.cardRow.addEventListener("click", e => {
 
   if (btn) {
     const id = parseInt(btn.dataset.id, 10);
-    const randomAnime = state.cards.selectRandom(state.anime.list);
 
     //Delete current card data
     state.cards.deleteCard(id);
 
     //Set new card data
+    const randomAnime = state.cards.selectRandom(state.anime.list);
     state.cards.getCardData(randomAnime);
 
     //Remove from anime search list
     state.anime.removeAnime(randomAnime.id);
 
     //Replace card view with new anime
-    const newCardObj = state.cards.list.filter((state.cards.list.id = id));
-    console.log(newCardObj);
-    cardsView.replaceCard(btn, newCardObj);
+    cardsView.replaceCard(btn, randomAnime);
   }
 });

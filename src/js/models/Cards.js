@@ -24,8 +24,7 @@ export default class Cards {
   }
 
   deleteCard(id) {
-    console.log(id);
     const index = this.list.findIndex(el => el.id === id);
-    this.likes.splice(index, 1);
+    this.list.splice(index, 1);
   }
 }
