@@ -5,10 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
-    "apollo-boost": "^0.1.23",
-    "axios": "^0.18.0",
-    "graphql": "^14.0.2",
-    "react-apollo": "^2.3.3"
+    "axios": "^0.18.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -21,7 +18,7 @@
     "webpack-dev-server": "^3.1.14"
   },
   "scripts": {
-    "compile:sass": "node-sass dist/sass/main.scss dist/css/style.css -w",
+    "compile:sass": "node-sass src/sass/main.scss dist/css/style.css -w",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --open"

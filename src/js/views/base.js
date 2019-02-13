@@ -22,7 +22,7 @@ export const sendRequest = async query => {
       Accept: "application/json"
     },
     body: {
-      query: query
+      query
     }
   };
 

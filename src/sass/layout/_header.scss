@@ -1,0 +1,26 @@
+.header {
+  height: 40vh;
+  background-image: linear-gradient(
+      to right top,
+      rgba($color-primary-dark, 0.9),
+      rgba($color-primary, 0.9)
+    ),
+    url(../img/traditionalhouse.jpg);
+  background-size: cover;
+  background-position: 0% 65%;
+  position: relative;
+
+  &__logobox {
+    position: absolute;
+    top: 12vh;
+    left: 16%;
+  }
+
+  &__logo {
+    height: 15rem;
+  }
+
+  &__textbox {
+    @include absolutecenter;
+  }
+}

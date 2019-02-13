@@ -1,0 +1,55 @@
+body {
+  /* To add font properties to the site, it's more efficient to add to body not universal selector */
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  color: $color-dark-brown;
+}
+
+.heading-primary {
+  font-family: "Cinzel", serif;
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-align: center;
+  color: $color-secondary-light;
+  text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2);
+
+  &--main {
+    display: block;
+    font-size: 8rem;
+    letter-spacing: 1rem;
+  }
+
+  &--sub {
+    display: block;
+    font-size: 5.5rem;
+    letter-spacing: 0.7rem;
+  }
+}
+
+.heading-secondary {
+  font-family: "Cinzel", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: $color-secondary-light;
+  letter-spacing: 0.2rem;
+  text-shadow: 0.5rem 0.5rem 2rem rgba($color-black, 0.2);
+}
+
+.heading-tertiary {
+  font-family: "Cinzel", serif;
+  margin: 0;
+  font-size: 4rem;
+  color: $color-dark-brown;
+  text-align: center;
+  text-shadow: 0.5rem 0.5rem 2rem rgba($color-black, 0.2);
+}
+
+.form__checkbox-font {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+}

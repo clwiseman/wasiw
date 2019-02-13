@@ -1,0 +1,18 @@
+.section-form {
+  background-color: $color-light;
+  padding: 8rem 0;
+  margin-top: -1.5rem;
+}
+
+.section-cards {
+  background-image: linear-gradient(
+      to right top,
+      rgba($color-secondary, 0.9),
+      rgba($color-secondary-dark, 0.9)
+    ),
+    url(../img/marketstreet.jpg);
+  background-size: cover;
+  background-position: bottom;
+
+  padding: 5rem 0;
+}

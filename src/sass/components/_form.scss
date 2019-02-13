@@ -1,0 +1,47 @@
+.form {
+  &__columns {
+    column-count: 4;
+  }
+
+  &__checkbox-input {
+    display: none;
+  }
+
+  &__checkbox-label {
+    cursor: pointer;
+    position: relative;
+    padding-left: 4rem;
+  }
+
+  &__checkbox-button {
+    height: 1.2rem;
+    width: 1.2rem;
+    border: 4px solid $color-secondary-dark;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: 1rem;
+    top: 0;
+
+    &::after {
+      content: "";
+      display: block;
+      @include absolutecenter;
+      background-color: $color-secondary-dark;
+      height: 0.7rem;
+      width: 0.7rem;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+  }
+
+  &__checkbox-input:checked ~ &__checkbox-label &__checkbox-button::after {
+    //Select sibling and then child
+    opacity: 1;
+  }
+
+  &__submit {
+    text-align: center;
+  }
+}

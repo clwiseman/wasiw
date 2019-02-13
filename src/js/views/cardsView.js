@@ -1,7 +1,7 @@
 import { elements } from "./base";
 
-//Title currently set to 45 characters, synopsis to 430
-export const limitStringLength = (title, limit = 45) => {
+//Title currently set to 43 characters, synopsis to 430
+export const limitStringLength = (title, limit = 43) => {
   const newTitle = [];
   if (title.length > limit) {
     title.split(" ").reduce((acc, cur) => {
@@ -57,7 +57,7 @@ const cardHTML = cardObj => {
         <div class="card__btn">
             <a href="#" class="btn btn-small" data-id="${
               cardObj.id
-            }">Try Again!</a>
+            }">No, Thanks!<br>Try Again!</a>
         </div>
     </div>`;
   return markup;
