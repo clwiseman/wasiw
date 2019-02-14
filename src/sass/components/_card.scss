@@ -86,7 +86,34 @@
   &__synopsis {
     position: absolute;
     top: 26rem;
-    padding: 1rem 1rem 0 1rem;
+    padding: 1rem;
     font-size: 1.4rem;
+    overflow-y: auto;
+    width: calc(100% - 2rem);
+    height: calc(100% - 35rem);
+  }
+
+  &__link {
+    position: absolute;
+    top: 58rem;
+    padding: 1rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+
+    &-href {
+      &,
+      &:link,
+      &:visited {
+        text-decoration: underline;
+        color: $color-red;
+        cursor: pointer;
+      }
+
+      &:hover {
+        text-decoration: none;
+        color: $color-white;
+        background-color: $color-red;
+      }
+    }
   }
 }

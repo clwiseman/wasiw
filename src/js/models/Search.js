@@ -10,7 +10,8 @@ class Anime {
     season,
     year,
     synopsis,
-    image
+    image,
+    url
   ) {
     this.id = id;
     this.idMal = idMal;
@@ -21,6 +22,7 @@ class Anime {
     this.season = `${season} ${year}`;
     this.synopsis = synopsis;
     this.image = image;
+    this.url = url;
   }
 }
 
@@ -60,6 +62,7 @@ export default class Search {
             coverImage {
               large
             }
+            siteUrl
           }
         }
       },`;
@@ -82,7 +85,8 @@ export default class Search {
             anime.season,
             anime.startDate.year,
             anime.description,
-            anime.coverImage.large
+            anime.coverImage.large,
+            anime.siteUrl
           )
         );
       });

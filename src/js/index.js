@@ -124,9 +124,6 @@ elements.tellMeButton.addEventListener("click", async e => {
 //RUNS ON "X" BUTTON ON CARDS
 
 elements.cardRow.addEventListener("click", e => {
-  //Stop from submitting href=#
-  e.preventDefault();
-
   //Event delegation to btn on card
   const btn = e.target.closest(`.${elementStrings.cardClose}`);
 
