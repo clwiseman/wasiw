@@ -13,7 +13,7 @@ body {
   line-height: 1.2;
   text-transform: uppercase;
   text-align: center;
-  color: $color-secondary-light;
+  color: $color-white;
   text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2);
 
   &--main {
@@ -30,11 +30,11 @@ body {
 }
 
 .heading-secondary {
-  font-family: "Cinzel", serif;
+  font-family: "Nunito Sans", sans-serif;
   font-size: 2rem;
   font-weight: 700;
   text-align: center;
-  color: $color-secondary-light;
+  color: $color-dark-brown;
   letter-spacing: 0.2rem;
   text-shadow: 0.5rem 0.5rem 2rem rgba($color-black, 0.2);
 }

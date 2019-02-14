@@ -10,7 +10,9 @@ export const populateCheckboxes = genre => {
 };
 
 export const clearAllCheckboxes = () => {
-  document.querySelectorAll(`.${elementStrings.checkbox}`).forEach(checkbox => {
-    checkbox.checked = false;
-  });
+  document
+    .querySelectorAll(`.${elementStrings.checkboxes}`)
+    .forEach(checkbox => {
+      checkbox.checked = false;
+    });
 };

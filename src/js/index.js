@@ -101,8 +101,11 @@ elements.tellMeButton.addEventListener("click", async e => {
   // 1) Request to API, filter results on radio button selection
   await controlSearchList();
 
-  // 2) Card section appears
+  // 2) Card section appears and display selected genre in header
   showSection(elements.cardSection);
+
+  const selectedGenres = searchView.selectCheckboxes();
+  cardsView.displayGenreHeader(selectedGenres);
 
   // 3) Select 3 random entries and fill cards, reset if already cards
   if (state.cards) {
@@ -118,14 +121,14 @@ elements.tellMeButton.addEventListener("click", async e => {
   genreView.clearAllCheckboxes();
 });
 
-//RUNS ON "Try Again" BUTTONS
+//RUNS ON "X" BUTTON ON CARDS
 
 elements.cardRow.addEventListener("click", e => {
   //Stop from submitting href=#
   e.preventDefault();
 
   //Event delegation to btn on card
-  const btn = e.target.closest(`.${elementStrings.tryAgainBtn}`);
+  const btn = e.target.closest(`.${elementStrings.cardClose}`);
 
   if (btn) {
     const id = parseInt(btn.dataset.id, 10);

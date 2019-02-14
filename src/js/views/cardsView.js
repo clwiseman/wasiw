@@ -15,12 +15,20 @@ export const limitStringLength = (title, limit = 43) => {
   return title;
 };
 
+export const displayGenreHeader = selectedGenres => {
+  const text = selectedGenres.join(", ");
+  elements.cardGenreHeader.innerHTML = text;
+};
+
 export const clearCards = () => {
   elements.cardRow.innerHTML = "";
 };
 
 const cardHTML = cardObj => {
   const markup = `<div class="card">
+        <i class="fas fa-window-close btn-close card__close" data-id="${
+          cardObj.id
+        }"></i>
         <img class="card__img" src="${cardObj.image}" />
         <div class="card__heading">
             <h4 class="card__heading-span">${limitStringLength(
@@ -54,18 +62,13 @@ const cardHTML = cardObj => {
             <div class="card__sub-heading">Synopsis</div>
             ${limitStringLength(cardObj.synopsis, 430)}
         </div>
-        <div class="card__btn">
-            <a href="#" class="btn btn-small" data-id="${
-              cardObj.id
-            }">No, Thanks!<br>Try Again!</a>
-        </div>
     </div>`;
   return markup;
 };
 
 export const populateCard = cardObj => {
   const markup = `
-    <div class="col-1-of-3">
+    <div class="col-1-of-3 card__column">
         ${cardHTML(cardObj)}
     </div>`;
   elements.cardRow.insertAdjacentHTML("beforeend", markup);

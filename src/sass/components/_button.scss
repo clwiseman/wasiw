@@ -13,7 +13,7 @@
     position: relative;
     font-size: $default-font-size;
     background-color: $color-red;
-    color: $color-secondary-light;
+    color: $color-white;
 
     //For button element
     border: none;
@@ -56,5 +56,26 @@
   &-small:visited {
     font-size: 1.2rem;
     padding: 0.5rem 2rem;
+  }
+}
+
+.btn-close {
+  &,
+  &:link,
+  &:visited {
+    line-height: 0.85;
+    color: $color-red;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0.3rem 1rem rgba($color-black, 0.2);
   }
 }

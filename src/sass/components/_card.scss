@@ -1,18 +1,29 @@
+.card__column {
+  animation-name: scaleOut;
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.13, 0.61, 0.84, 0.59);
+}
+
 .card {
   position: relative;
   height: 65rem;
   width: 100%;
   border-radius: 3px;
   overflow: hidden;
-  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
   background-color: $color-secondary-light;
+  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-0.5rem) scale(1.01);
+  }
 
   &__heading {
     position: absolute;
-    width: calc(100% - 2rem);
+    width: calc(100% - 7rem);
     text-align: center;
     margin: 1rem 0 0 0;
-    padding: 0 1rem 0 1rem;
+    padding: 0 3.5rem 0 3.5rem;
 
     &-span {
       font-family: "Cinzel", serif;
@@ -21,6 +32,13 @@
       text-transform: uppercase;
       margin: 0;
     }
+  }
+
+  &__close {
+    position: absolute;
+    top: 1.5rem;
+    left: 0.9rem;
+    z-index: 6; //To make sure .card_close is in front of .card__heading
   }
 
   &__img {
@@ -70,12 +88,5 @@
     top: 26rem;
     padding: 1rem 1rem 0 1rem;
     font-size: 1.4rem;
-  }
-
-  &__btn {
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    transform: translate(-50%, 0);
   }
 }

@@ -4,12 +4,13 @@ export const elements = {
   genreForm: document.querySelector(".form__columns"),
   tellMeButton: document.querySelector(".tellMe"),
   cardSection: document.querySelector(".section-cards"),
+  cardGenreHeader: document.querySelector(".section-cards__heading-genres"),
   cardRow: document.querySelector(".card__row")
 };
 
 export const elementStrings = {
   checkboxes: "form__checkbox-input",
-  tryAgainBtn: "btn-small"
+  cardClose: "card__close"
 };
 
 export const sendRequest = async query => {
