@@ -1,4 +1,5 @@
 .form {
+
   &__columns {
     column-count: 4;
   }
@@ -42,6 +43,13 @@
   }
 
   &__submit {
+    text-align: center;
+  }
+
+  &__error {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
     text-align: center;
   }
 }

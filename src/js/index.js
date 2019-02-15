@@ -7,37 +7,73 @@ import * as cardsView from "./views/cardsView";
 import {
   elements,
   elementStrings,
-  sendRequest,
   showSection,
   scrollToBottom
 } from "./views/base";
+import axios from "axios";
 
 /** Global state of the app
- * - Generate list of genres
- * - Search selected genre
- * - Populate anime cards
- * - Reroll new selection
+ * genres: list of genres
+ * anime: search results for selected genre
+ * cards: populate anime details on cards
  */
 
 const state = {};
+
+/******************* TESTING - REMOVE BEFORE LIVE **********************/
 window.l = state;
+
+/**
+ API REQUEST FUNCTION
+ */
+
+const sendRequest = async query => {
+  const base_url = "https://graphql.anilist.co";
+
+  const configRequest = {
+    url: base_url,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: {
+      query
+    }
+  };
+
+  try {
+    const result = await axios.post(
+      configRequest.url,
+      configRequest.body,
+      configRequest.headers
+    );
+
+    let data;
+    if (await result.errors) {
+      throw "We are currently unable to connect to our data source. Please try again later.";
+    }
+
+    data = await result.data.data;
+
+    return data;
+  } catch (error) {
+    const message = `<p class="form__error">${error}</p>`;
+    elements.genreSection.innerHTML = message;
+  }
+};
 
 /**
  GENRE LIST CONTROLLER
 */
 
 const controlGenreList = async () => {
-  try {
-    state.genres = new Genres();
+  state.genres = new Genres();
 
-    // 1) Send API request
-    state.genres.addGenres(await sendRequest(state.genres.query));
+  // 1) Send API request
+  state.genres.addGenres(await sendRequest(state.genres.query));
 
-    // 2) Generate radio buttons
-    state.genres.list.forEach(genre => genreView.populateCheckboxes(genre));
-  } catch (error) {
-    console.warn(error.message);
-  }
+  // 2) Generate radio buttons
+  state.genres.list.forEach(genre => genreView.populateCheckboxes(genre));
 };
 
 /**

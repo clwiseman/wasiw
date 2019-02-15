@@ -8,14 +8,19 @@ export default class Genres {
   }
 
   addGenres(requestData) {
-    requestData.GenreCollection.forEach(genre => {
+    const genres = requestData.GenreCollection;
+
+    const index = genres.indexOf("Hentai");
+    genres.splice(index, 1);
+
+    genres.forEach(genre => {
       this.list.push(genre);
     });
   }
 }
 
 /*
-//List of genres to be replaced by data request
+//List of genres replaced by data request
 const genres = [
   "Action",
   "Adventure",

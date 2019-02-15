@@ -1,7 +1,7 @@
 import { elements } from "./base";
 
-//Title currently set to 37 characters
-export const limitStringLength = (title, limit = 37) => {
+//Title currently set to default 36 characters, genres set to 41
+export const limitStringLength = (title, limit = 36, ending = "...") => {
   const newTitle = [];
   if (title.length > limit) {
     title.split(" ").reduce((acc, cur) => {
@@ -10,7 +10,7 @@ export const limitStringLength = (title, limit = 37) => {
       }
       return acc + cur.length;
     }, 0);
-    return `${newTitle.join(" ")}...`;
+    return `${newTitle.join(" ")}${ending}`;
   }
   return title;
 };
@@ -41,7 +41,7 @@ const cardHTML = cardObj => {
             <ul>
                 <li>
                     <span class="card__sub-heading">Genres</span><br />
-                    ${cardObj.genres.join(", ")}
+                    ${limitStringLength(cardObj.genres.join(", "), 41, " +")}
                 </li>
                 <li><span class="card__sub-heading">Score</span> ${
                   cardObj.score === null ? "-" : cardObj.score + " %"

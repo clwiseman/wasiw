@@ -45,7 +45,7 @@ export default class Search {
             hasNextPage
             perPage
           }
-          media (genre_in: ${arrayString}, type: ANIME) {
+          media (genre_in: ${arrayString}, type: ANIME, isAdult: false, format_not_in: [MUSIC, SPECIAL, ONA, OVA], status_in:[FINISHED, RELEASING]) {
             id
             idMal
             genres
@@ -70,6 +70,10 @@ export default class Search {
 
   getAnime(requestData) {
     try {
+      if (requestData.Page.pageInfo.total === 0) {
+        throw "No search results. Please try a new search.";
+      }
+
       const animeData = requestData.Page.media;
       const animeArray = [];
 
@@ -92,7 +96,7 @@ export default class Search {
       });
       return animeArray;
     } catch (error) {
-      console.warn(error.message);
+      console.log(error);
     }
   }
 

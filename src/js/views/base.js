@@ -1,6 +1,5 @@
-import axios from "axios";
-
 export const elements = {
+  genreSection: document.querySelector(".section-form"),
   genreForm: document.querySelector(".form__columns"),
   tellMeButton: document.querySelector(".tellMe"),
   cardSection: document.querySelector(".section-cards"),
@@ -11,33 +10,6 @@ export const elements = {
 export const elementStrings = {
   checkboxes: "form__checkbox-input",
   cardClose: "card__close"
-};
-
-export const sendRequest = async query => {
-  const base_url = "https://graphql.anilist.co";
-
-  const configRequest = {
-    url: base_url,
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json"
-    },
-    body: {
-      query
-    }
-  };
-
-  try {
-    const result = await axios.post(
-      configRequest.url,
-      configRequest.body,
-      configRequest.headers
-    );
-    const data = await result.data.data;
-    return data;
-  } catch (error) {
-    console.warn(error.message);
-  }
 };
 
 export const showSection = section => {
