@@ -10,14 +10,42 @@
   background-position: 0% 65%;
   position: relative;
 
+  @include respond(large) {
+    height: 24rem;
+  }
+
+  @include respond(medium) {
+    height: 18rem;
+  }
+
+  @include respond(small) {
+    height: 15rem;
+  }
+
   &__logobox {
     position: absolute;
-    top: 12vh;
-    left: 16%;
+    top: 10vh;
+    left: 12%;
+
+    @include respond(large) {
+      top: 2rem;
+    }
+
+    @include respond(medium) {
+      top: 0;
+    }
   }
 
   &__logo {
     height: 15rem;
+
+    @include respond(medium) {
+      height: 13rem;
+    }
+
+    @include respond(small) {
+      height: 10rem;
+    }
   }
 
   &__textbox {

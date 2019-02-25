@@ -16,3 +16,7 @@ export const clearAllCheckboxes = () => {
       checkbox.checked = false;
     });
 };
+
+export const genreFormError = () => {
+  elements.genreSection.innerHTML = `<p class="form__error">There was a problem connecting to our data source. Please try again later.</p>`;
+};

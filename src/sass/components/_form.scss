@@ -1,7 +1,14 @@
 .form {
-
   &__columns {
     column-count: 4;
+
+    @include respond(small) {
+      column-count: 3;
+    }
+
+    @include respond(extra-small) {
+      column-count: 2;
+    }
   }
 
   &__checkbox-input {
@@ -47,6 +54,7 @@
   }
 
   &__error {
+    margin-top: 10vh;
     display: block;
     font-size: 1.8rem;
     font-weight: 700;

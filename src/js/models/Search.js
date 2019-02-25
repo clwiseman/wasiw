@@ -69,35 +69,28 @@ export default class Search {
   }
 
   getAnime(requestData) {
-    try {
-      if (requestData.Page.pageInfo.total === 0) {
-        throw "No search results. Please try a new search.";
-      }
+    const animeData = requestData.data.data.Page.media;
+    const animeArray = [];
 
-      const animeData = requestData.Page.media;
-      const animeArray = [];
+    animeData.forEach(anime => {
+      animeArray.push(
+        new Anime(
+          anime.id,
+          anime.idMal,
+          anime.genres,
+          anime.title.romaji,
+          anime.title.english,
+          anime.averageScore,
+          anime.season,
+          anime.startDate.year,
+          anime.description,
+          anime.coverImage.large,
+          anime.siteUrl
+        )
+      );
+    });
 
-      animeData.forEach(anime => {
-        animeArray.push(
-          new Anime(
-            anime.id,
-            anime.idMal,
-            anime.genres,
-            anime.title.romaji,
-            anime.title.english,
-            anime.averageScore,
-            anime.season,
-            anime.startDate.year,
-            anime.description,
-            anime.coverImage.large,
-            anime.siteUrl
-          )
-        );
-      });
-      return animeArray;
-    } catch (error) {
-      console.log(error);
-    }
+    return animeArray;
   }
 
   removeAnime(animeID) {

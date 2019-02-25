@@ -13,24 +13,24 @@
 html {
   font-size: 62.5%; /* Browser default is 16px. We want 10px, so 10/16 = 62.5% */
 
-  // @include respond(big-desktop) {
-  //   font-size: 75%; //1rem = 12px
-  // }
+  @include respond(large) {
+    font-size: 56.25%; //1rem = 9px
+  }
 
-  // @include respond(tab-land) {
-  //   font-size: 56.25%; //1rem = 9px
-  // }
-
-  // @include respond(tab-port) {
-  //   font-size: 50%; //1rem = 8px
-  // }
+  @include respond(small) {
+    font-size: 50%; //1rem = 8px
+  }
 }
 
 body {
   box-sizing: border-box;
   padding: 1.5rem; /* add border to the full webpage */
 
-  // @include respond(tab-port) {
-  //   padding: 0;
-  // }
+  @include respond(large) {
+    padding: 0.8rem;
+  }
+
+  @include respond(medium) {
+    padding: 0;
+  }
 }

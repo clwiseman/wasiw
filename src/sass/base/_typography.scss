@@ -16,16 +16,42 @@ body {
   color: $color-white;
   text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2);
 
+  @include respond(large) {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @include respond(medium) {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
   &--main {
     display: block;
     font-size: 8rem;
     letter-spacing: 1rem;
+
+    @include respond(large) {
+      font-size: 7.5rem;
+    }
+
+    @include respond(medium) {
+      font-size: 5rem;
+    }
   }
 
   &--sub {
     display: block;
     font-size: 5.5rem;
     letter-spacing: 0.7rem;
+
+    @include respond(large) {
+      font-size: 5rem;
+    }
+
+    @include respond(medium) {
+      font-size: 3.5rem;
+    }
   }
 }
 
@@ -37,6 +63,10 @@ body {
   color: $color-dark-brown;
   letter-spacing: 0.2rem;
   text-shadow: 0.5rem 0.5rem 2rem rgba($color-black, 0.2);
+
+  @include respond(medium) {
+    font-size: 1.7rem;
+  }
 }
 
 .heading-tertiary {
@@ -46,6 +76,10 @@ body {
   color: $color-dark-brown;
   text-align: center;
   text-shadow: 0.5rem 0.5rem 2rem rgba($color-black, 0.2);
+
+  @include respond(medium) {
+    font-size: 3rem;
+  }
 }
 
 .form__checkbox-font {

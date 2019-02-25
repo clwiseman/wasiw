@@ -8,7 +8,7 @@ export default class Genres {
   }
 
   addGenres(requestData) {
-    const genres = requestData.GenreCollection;
+    const genres = requestData.data.data.GenreCollection;
 
     const index = genres.indexOf("Hentai");
     genres.splice(index, 1);

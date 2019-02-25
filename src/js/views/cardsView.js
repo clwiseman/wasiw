@@ -15,11 +15,6 @@ export const limitStringLength = (title, limit = 36, ending = "...") => {
   return title;
 };
 
-export const displayGenreHeader = selectedGenres => {
-  const text = selectedGenres.join(", ");
-  elements.cardGenreHeader.innerHTML = text;
-};
-
 export const clearCards = () => {
   elements.cardRow.innerHTML = "";
 };
@@ -85,4 +80,21 @@ export const replaceCard = (btn, cardObj) => {
 
   //Set new view
   cardView.innerHTML = cardHTML(cardObj);
+};
+
+export const deleteCardView = btn => {
+  const cardColumn = btn.parentNode.parentNode;
+
+  //Clear current card view
+  cardColumn.innerHTML = "";
+};
+
+export const noCardsLeft = () => {
+  elements.cardRow.innerHTML = `<p class="card__error">There are no more options for this category. Please try a new search.</p>`;
+};
+
+export const hideCardSection = () => {
+  if (!elements.cardSection.classList.contains("hide")) {
+    elements.cardSection.classList.add("hide");
+  }
 };

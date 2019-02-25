@@ -12,3 +12,47 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+//MEDIA QUERY MANAGER
+/*
+Default: > 1450px
+Large: 1180px - 1400px
+Medium: 850px - 1180px
+Small: 600 - 850px
+Extra small: < 600px
+
+$breakpoint argument choices
+- extra-small
+- small
+- medium
+- large
+
+1em = 16px
+*/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == large {
+    @media (max-width: 87.5em) {
+      //1400px
+      @content;
+    }
+  }
+  @if $breakpoint == medium {
+    @media (max-width: 73.75em) {
+      //1180px
+      @content;
+    }
+  }
+  @if $breakpoint == small {
+    @media (max-width: 53.125em) {
+      //850px
+      @content;
+    }
+  }
+  @if $breakpoint == extra-small {
+    @media (max-width: 37.5em) {
+      //600px
+      @content;
+    }
+  }
+}

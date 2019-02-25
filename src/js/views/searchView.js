@@ -10,7 +10,15 @@ export const selectCheckboxes = () => {
   return genreArray;
 };
 
-export const searchRequestError = () => {
-  const message = `<p class="form__error">We are currently unable to connect to our data source. Please try again later.</p>`;
-  elements.cardSection.innerHTML = message;
+export const searchNoSelection = () => {
+  elements.cardRow.innerHTML = `<p class="card__error">Please select at least one genre to show results.</p>`;
+};
+
+export const searchNoResults = genreArray => {
+  elements.cardRow.innerHTML = `<p class="card__error">Your selection had no results. Please try another selection.</p>`;
+};
+
+export const displayGenreHeader = selectedGenres => {
+  const text = selectedGenres.join(", ");
+  elements.cardGenreHeader.innerHTML = text;
 };

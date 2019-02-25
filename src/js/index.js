@@ -41,25 +41,15 @@ const sendRequest = async query => {
     }
   };
 
-  try {
-    const result = await axios.post(
-      configRequest.url,
-      configRequest.body,
-      configRequest.headers
-    );
+  const result = await axios.post(
+    configRequest.url,
+    configRequest.body,
+    configRequest.headers
+  );
 
-    let data;
-    if (await result.errors) {
-      throw "We are currently unable to connect to our data source. Please try again later.";
-    }
+  const data = await result;
 
-    data = await result.data.data;
-
-    return data;
-  } catch (error) {
-    const message = `<p class="form__error">${error}</p>`;
-    elements.genreSection.innerHTML = message;
-  }
+  return data;
 };
 
 /**
@@ -80,29 +70,21 @@ const controlGenreList = async () => {
  SEARCH RESULTS CONTROLLER
  */
 
-const controlSearchList = async () => {
-  try {
-    state.anime = new Search();
+const controlSearchList = async genresArray => {
+  state.anime = new Search();
 
-    //Filter API request to radio button selection
-    const selectedGenres = searchView.selectCheckboxes();
+  //Add selected genres to query
+  state.anime.setQuery(genresArray);
 
-    state.anime.setQuery(selectedGenres);
-
-    //Send request and store anime data
-    state.anime.list = state.anime.getAnime(
-      await sendRequest(state.anime.query)
-    );
-  } catch (error) {
-    console.warn(error.message);
-  }
+  //Send request and store anime data
+  state.anime.list = state.anime.getAnime(await sendRequest(state.anime.query));
 };
 
 /**
  CARDS CONTROLLER
 */
 
-const controlGenerateCards = (numCards = 1) => {
+const controlGenerateCard = (numCards = 1) => {
   for (var i = 1; i <= numCards; i++) {
     //Select random anime from search list
     if (!state.cards) state.cards = new Cards();
@@ -119,42 +101,95 @@ const controlGenerateCards = (numCards = 1) => {
   }
 };
 
+const controlReplaceCard = (id, btn) => {
+  //Delete current card data
+  state.cards.deleteCard(id);
+
+  //Set new card data
+  const randomAnime = state.cards.selectRandom(state.anime.list);
+  state.cards.getCardData(randomAnime);
+
+  //Remove from anime search list
+  state.anime.removeAnime(randomAnime.id);
+
+  //Replace card view with new anime
+  cardsView.replaceCard(btn, randomAnime);
+};
+
 /* ******* EVENTS ******* */
 
-//RUNS ON PAGE LOAD
+/**
+RUNS ON PAGE LOAD
+*/
 
 window.addEventListener("load", () => {
-  //Generate genre checkboxes on page load
-  controlGenreList();
+  try {
+    //Generate genre checkboxes on page load
+    controlGenreList();
+  } catch {
+    //Generate error message to user interface
+    genreView.genreFormError();
+
+    //Hide card section
+    cardsView.hideCardSection();
+  }
 });
 
-//RUNS ON "Tell Me What to Watch" BUTTON
+/**
+RUNS ON "Tell Me What to Watch" BUTTON
+*/
 
 elements.tellMeButton.addEventListener("click", async e => {
   //Stop from submitting href=#
   e.preventDefault();
 
-  // 1) Request to API, filter results on radio button selection
-  await controlSearchList();
+  try {
+    // 1) Filter results on radio button selection
+    const selectedGenres = searchView.selectCheckboxes();
 
-  // 2) Card section appears and display selected genre in header
-  showSection(elements.cardSection);
+    if (selectedGenres.length === 0) {
+      //If nothing selected, display message
+      searchView.searchNoSelection();
+    } else {
+      //In case already populated, reset cards data
+      cardsView.clearCards();
+      if (state.cards) {
+        state.cards.list = [];
+      }
 
-  const selectedGenres = searchView.selectCheckboxes();
-  cardsView.displayGenreHeader(selectedGenres);
+      // 2) Send API request
+      await controlSearchList(selectedGenres);
 
-  // 3) Select 3 random entries and fill cards, reset if already cards
-  if (state.cards) {
-    state.cards.list = [];
-    cardsView.clearCards();
+      // 3) Display selected genre in header
+      searchView.displayGenreHeader(selectedGenres);
+
+      if (state.anime.list.length === 0) {
+        //If no results, display message
+        searchView.searchNoResults(selectedGenres);
+      } else if (state.anime.list.length < 3) {
+        //Less than 3 options with the selected genre(s)? Run for list length
+        controlGenerateCard(state.anime.list.length);
+      } else {
+        // 4) Select 3 random entries and fill cards
+        controlGenerateCard(3);
+      }
+    }
+
+    // 4) Card section appears
+    showSection(elements.cardSection);
+
+    // 5) Window scrolls down to bottom
+    scrollToBottom();
+
+    // 6) Clear checkboxes
+    genreView.clearAllCheckboxes();
+  } catch {
+    //Generate error message to user interface
+    genreView.genreFormError();
+
+    //Hide card section
+    cardsView.hideCardSection();
   }
-  controlGenerateCards(3);
-
-  // 4) Window scrolls down to bottom
-  scrollToBottom();
-
-  // 5) Clear checkboxes
-  genreView.clearAllCheckboxes();
 });
 
 //RUNS ON "X" BUTTON ON CARDS
@@ -164,19 +199,26 @@ elements.cardRow.addEventListener("click", e => {
   const btn = e.target.closest(`.${elementStrings.cardClose}`);
 
   if (btn) {
+    //Grab id from card
     const id = parseInt(btn.dataset.id, 10);
 
-    //Delete current card data
-    state.cards.deleteCard(id);
+    if (state.anime.list.length === 0 && state.cards.list.length === 1) {
+      //No replacements, last card
+      //Delete current card data
+      state.cards.deleteCard(id);
 
-    //Set new card data
-    const randomAnime = state.cards.selectRandom(state.anime.list);
-    state.cards.getCardData(randomAnime);
+      //Display message
+      cardsView.noCardsLeft();
+    } else if (state.anime.list.length === 0 && state.cards.list.length <= 3) {
+      //No replacements, cards left
+      //Delete current card data
+      state.cards.deleteCard(id);
 
-    //Remove from anime search list
-    state.anime.removeAnime(randomAnime.id);
-
-    //Replace card view with new anime
-    cardsView.replaceCard(btn, randomAnime);
+      //Remove card from view
+      cardsView.deleteCardView(btn);
+    } else {
+      //Replace card in data and view
+      controlReplaceCard(id, btn);
+    }
   }
 });
