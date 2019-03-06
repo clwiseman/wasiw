@@ -2,12 +2,22 @@
   &__columns {
     column-count: 4;
 
-    @include respond(small) {
+    @include respond(medium) {
       column-count: 3;
     }
 
-    @include respond(extra-small) {
+    @include respond(small) {
       column-count: 2;
+    }
+
+    @include respond(extra-small) {
+      column-count: 1;
+    }
+  }
+
+  &__group {
+    @include respond(extra-small) {
+      padding: 0 3rem;
     }
   }
 
@@ -28,8 +38,8 @@
     border-radius: 50%;
     display: inline-block;
     position: absolute;
-    left: 1rem;
-    top: 0;
+    left: 0.8rem;
+    top: 0.25rem;
 
     &::after {
       content: "";

@@ -8,6 +8,14 @@
 
 .u-margin-bottom-medium {
   margin-bottom: 4rem !important;
+
+  @include respond(large) {
+    margin-bottom: 3rem !important;
+  }
+
+  @include respond(medium) {
+    margin-bottom: 2rem !important;
+  }
 }
 
 .u-margin-bottom-small {

@@ -12,7 +12,16 @@
   }
 
   @include respond(medium) {
+    max-width: 80rem;
+    padding: 0 3rem;
+  }
+
+  @include respond(small) {
     max-width: 50rem;
+  }
+
+  @include respond(extra-small) {
+    padding: 0;
   }
 
   @include clearfix;
@@ -28,6 +37,10 @@
       @include respond(medium) {
         margin-right: 0;
         margin-bottom: $gutter-vertical-small;
+      }
+
+      @include respond(extra-small) {
+        margin-bottom: 2rem;
       }
     }
 

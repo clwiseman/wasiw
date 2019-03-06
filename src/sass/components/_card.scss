@@ -14,6 +14,21 @@
   box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
   transition: transform 0.2s;
 
+  @include respond(medium) {
+    height: 35rem;
+  }
+
+  @include respond(small) {
+    height: 56rem;
+    max-width: 35rem;
+    margin: auto;
+  }
+
+  @include respond(extra-small) {
+    height: 51rem;
+    max-width: 32rem;
+  }
+
   &:hover {
     transform: translateY(-0.5rem) scale(1.01);
   }
@@ -23,7 +38,12 @@
     width: calc(100% - 7rem);
     text-align: center;
     margin: 1rem 0 0 0;
-    padding: 0 3.5rem 0 3.5rem;
+    padding: 0 3.5rem;
+
+    @include respond(extra-small) {
+      width: calc(100% - 6rem);
+      padding: 0 3rem;
+    }
 
     &-span {
       font-family: "Cinzel", serif;
@@ -49,6 +69,23 @@
     width: 12.5rem;
     border-radius: 3px;
     padding: 1rem;
+
+    @include respond(medium) {
+      top: 4rem;
+      height: 16rem;
+      width: 12rem;
+      padding: 1rem 2rem;
+    }
+
+    @include respond(small) {
+      top: 6rem;
+      padding: 1rem;
+    }
+
+    @include respond(extra-small) {
+      height: 15rem;
+      width: 10rem;
+    }
   }
 
   &__details {
@@ -59,6 +96,25 @@
     font-size: 1.5rem;
     font-weight: 300;
 
+    @include respond(medium) {
+      top: 3.5rem;
+      left: 15rem;
+      padding: 1rem;
+      width: 35%;
+    }
+
+    @include respond(small) {
+      top: 6.5rem;
+      right: 1rem;
+      padding: 0;
+      width: 56%;
+    }
+
+    @include respond(extra-small) {
+      left: 12rem;
+      width: 60%;
+    }
+
     ul {
       padding: 0 1rem 0 0;
       list-style: none;
@@ -68,6 +124,10 @@
         &:not(:last-child) {
           border-bottom: 1px solid $color-red;
           padding-bottom: 0.8rem;
+
+          @include respond(extra-small) {
+            padding-bottom: 0.2rem;
+          }
         }
 
         &:not(:first-child) {
@@ -91,6 +151,25 @@
     overflow-y: auto;
     width: calc(100% - 2rem);
     height: calc(100% - 35rem);
+
+    @include respond(medium) {
+      top: 3.5rem;
+      right: 1rem;
+      width: 41%;
+      height: calc(100% - 8rem);
+    }
+
+    @include respond(small) {
+      top: 23rem;
+      left: 0;
+      width: calc(100% - 2rem);
+      height: calc(100% - 32rem);
+    }
+
+    @include respond(extra-small) {
+      top: 22rem;
+      height: calc(100% - 30rem);
+    }
   }
 
   &__link {
@@ -99,6 +178,22 @@
     padding: 1rem;
     font-size: 1.4rem;
     font-weight: 700;
+
+    @include respond(medium) {
+      top: 24rem;
+      left: 14rem;
+      padding: 1rem 2rem;
+    }
+
+    @include respond(small) {
+      top: 51rem;
+      left: 0;
+      padding: 1rem;
+    }
+
+    @include respond(extra-small) {
+      top: 46rem;
+    }
 
     &-href {
       &,

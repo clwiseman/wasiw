@@ -15,11 +15,15 @@
   }
 
   @include respond(medium) {
-    height: 18rem;
+    height: 22rem;
   }
 
   @include respond(small) {
-    height: 15rem;
+    height: 16rem;
+  }
+
+  @include respond(extra-small) {
+    height: 14rem;
   }
 
   &__logobox {
@@ -33,6 +37,14 @@
 
     @include respond(medium) {
       top: 0;
+    }
+
+    @include respond(small) {
+      left: 5%;
+    }
+
+    @include respond(extra-small) {
+      display: none;
     }
   }
 
@@ -49,6 +61,10 @@
   }
 
   &__textbox {
-    @include absolutecenter;
+    padding: 1rem;
+
+    @include respond(extra-small) {
+      padding: 0;
+    }
   }
 }

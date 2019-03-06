@@ -4,6 +4,14 @@
   height: 10vh;
   position: relative;
 
+  @include respond(small) {
+    height: 8rem;
+
+    @include respond(extra-small) {
+      height: 12rem;
+    }
+  }
+
   &__list {
     font-size: 1.8rem;
     padding: 0 1rem 0 0;
@@ -11,14 +19,34 @@
     margin: 0 auto;
 
     @include absolutecenter;
+
+    @include respond(small) {
+      font-size: 1.4rem;
+    }
+
+    @include respond(extra-small) {
+      padding: 0;
+      top: 40%;
+    }
   }
 
   &__item {
     display: inline-block;
 
+    @include respond(extra-small) {
+      display: block;
+      text-align: center;
+    }
+
     &:not(:last-child) {
       padding-right: 1rem;
       border-right: 2px solid $color-red;
+
+      @include respond(extra-small) {
+        border-right: none;
+        line-height: 2.5rem;
+        border-bottom: 2px solid $color-red;
+      }
     }
 
     &:not(:first-child) {
@@ -35,5 +63,10 @@
     position: absolute;
     bottom: 0;
     right: 1rem;
+
+    @include respond(small) {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
   }
 }
