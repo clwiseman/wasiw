@@ -122,10 +122,10 @@ const controlReplaceCard = (id, btn) => {
 RUNS ON PAGE LOAD
 */
 
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
   try {
     //Generate genre checkboxes on page load
-    controlGenreList();
+    await controlGenreList();
   } catch {
     //Generate error message to user interface
     genreView.genreFormError();
