@@ -74,10 +74,28 @@ const controlSearchList = async genresArray => {
   state.anime = new Search();
 
   //Add selected genres to query
-  state.anime.setQuery(genresArray);
+  state.anime.setQuery(genresArray, 1);
 
   //Send request and store anime data
-  state.anime.list = state.anime.getAnime(await sendRequest(state.anime.query));
+  let searchObj = state.anime.getAnime(await sendRequest(state.anime.query));
+  state.anime.list = searchObj.animeArray;
+
+  //Check pagination
+  if (searchObj.hasNextPage === true) {
+    //Loop through total number of pages
+    for (var page = 2; page <= searchObj.lastPage; page++) {
+      //Reset query for current page
+      state.anime.setQuery(genresArray, page);
+
+      //Rerun request with new query
+      searchObj = state.anime.getAnime(await sendRequest(state.anime.query));
+
+      //Add new anime to anime list
+      searchObj.animeArray.forEach(anime => {
+        state.anime.list.push(anime);
+      });
+    }
+  }
 };
 
 /**

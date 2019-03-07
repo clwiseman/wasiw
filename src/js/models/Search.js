@@ -33,11 +33,11 @@ export default class Search {
 
   //Set query value for GraphQL request
 
-  setQuery(selectedArray) {
+  setQuery(selectedArray, page) {
     const arrayString = `["${selectedArray.join(`", "`)}"]`;
 
     this.query = `query {
-        Page (page: 1, perPage: 100) {
+        Page (page: ${page.toString()}, perPage: 50) {
           pageInfo {
             total
             currentPage
@@ -69,10 +69,17 @@ export default class Search {
   }
 
   getAnime(requestData) {
+    const data = requestData.data.data.Page;
+
     const animeData = requestData.data.data.Page.media;
     const animeArray = [];
 
     animeData.forEach(anime => {
+      //To remove html tags from within the synopsis
+      const div = document.createElement("div");
+      div.innerHTML = anime.description;
+      anime.description = div.innerText;
+
       animeArray.push(
         new Anime(
           anime.id,
@@ -90,7 +97,14 @@ export default class Search {
       );
     });
 
-    return animeArray;
+    const searchObj = {
+      lastPage: data.pageInfo.lastPage,
+      hasNextPage: data.pageInfo.hasNextPage,
+      currentPage: data.pageInfo.currentPage,
+      animeArray
+    };
+
+    return searchObj;
   }
 
   removeAnime(animeID) {
