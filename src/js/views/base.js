@@ -18,6 +18,21 @@ export const showSection = section => {
   }
 };
 
-export const scrollToBottom = () => {
-  window.scrollTo(0, document.body.scrollHeight);
+export const scrollToTop = element => {
+  element.scrollIntoView({
+    behaviour: "smooth",
+    block: "start"
+  });
+};
+
+export const renderLoader = parent => {
+  const loader = `<div class="loader">
+                    <i class="fas fa-spinner"></i>
+                  </div>`;
+
+  parent.insertAdjacentHTML("afterbegin", loader);
+};
+
+export const clearLoader = parent => {
+  parent.innerHTML = "";
 };

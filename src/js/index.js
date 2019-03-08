@@ -8,7 +8,9 @@ import {
   elements,
   elementStrings,
   showSection,
-  scrollToBottom
+  scrollToTop,
+  renderLoader,
+  clearLoader
 } from "./views/base";
 import axios from "axios";
 
@@ -168,6 +170,9 @@ elements.tellMeButton.addEventListener("click", async e => {
     if (selectedGenres.length === 0) {
       //If nothing selected, display message
       searchView.searchNoSelection();
+
+      //Card section appears
+      showSection(elements.cardSection);
     } else {
       //In case already populated, reset cards data
       cardsView.clearCards();
@@ -175,11 +180,23 @@ elements.tellMeButton.addEventListener("click", async e => {
         state.cards.list = [];
       }
 
-      // 2) Send API request
+      // 2) Display selected genre in header
+      searchView.displayGenreHeader(selectedGenres);
+
+      // 3) Render loader
+      renderLoader(elements.cardRow);
+
+      // 4) Card section appears
+      showSection(elements.cardSection);
+
+      // 5) Window scrolls down to loader
+      scrollToTop(elements.cardSection);
+
+      // 5) Send API request
       await controlSearchList(selectedGenres);
 
-      // 3) Display selected genre in header
-      searchView.displayGenreHeader(selectedGenres);
+      // 6) Clear loader
+      clearLoader(elements.cardRow);
 
       if (state.anime.list.length === 0) {
         //If no results, display message
@@ -193,11 +210,8 @@ elements.tellMeButton.addEventListener("click", async e => {
       }
     }
 
-    // 4) Card section appears
-    showSection(elements.cardSection);
-
-    // 5) Window scrolls down to bottom
-    scrollToBottom();
+    // 5) Window scrolls down to cards
+    scrollToTop(elements.cardSection);
 
     // 6) Clear checkboxes
     genreView.clearAllCheckboxes();
