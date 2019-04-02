@@ -156,6 +156,16 @@ window.addEventListener("load", async () => {
 });
 
 /**
+RUNS ON CHECKBOX CHECK
+*/
+
+elements.genreForm.addEventListener("click", e => {
+  if (e.target.matches("[type=checkbox]")) {
+    genreView.checkCheckbox(e.target);
+  }
+});
+
+/**
 RUNS ON "Tell Me What to Watch" BUTTON
 */
 
