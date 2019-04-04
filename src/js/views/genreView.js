@@ -1,23 +1,16 @@
 import { elements, elementStrings } from "./base";
 
 export const populateCheckboxes = genre => {
-  /*
   const markup = `
     <div class="form__group">
-        <label for="${genre}" class="form__checkbox-label form__checkbox-font">
-        <input name="${genre}" type="checkbox" class="form__checkbox-input" id="${genre}">
-        <span class="form__checkbox-button"></span>${genre}<br></label>
-    </div>`;
-    */
+      <i class="far ${
+        elementStrings.iconEmpty
+      } form__checkbox-icon" id="${genre}-icon"></i>
+      <input name="${genre}" type="checkbox" class="form__checkbox-input" id="${genre}">
+      <label for="${genre}" class="form__checkbox-label form__checkbox-font">${genre}</label>
+    </div>
+  `;
 
-  const markup = `
-    <div class="form__group">
-        <label for="${genre}" class="form__checkbox-label form__checkbox-font">
-          <i class="far fa-square form__checkbox-custom" id="${genre}-check"></i>
-          <i class="far fa-check-square form__checkbox-custom--checked hide" id="${genre}-check-filled"></i>
-          <input name="${genre}" type="checkbox" class="form__checkbox-input" id="${genre}">${genre}<br>
-        </label>
-    </div>`;
   elements.genreForm.insertAdjacentHTML("beforeend", markup);
 };
 
@@ -27,22 +20,14 @@ export const clearAllCheckboxes = () => {
   checkboxes.forEach(checkbox => (checkbox.checked = false));
 
   //Show "unchecked" image
-  const checkboxesEmpty = document.querySelectorAll(
-    `.${elementStrings.checkboxesEmpty}`
+  const checkboxIcons = document.querySelectorAll(
+    `.${elementStrings.checkboxIcon}`
   );
-  checkboxesEmpty.forEach(checkbox => {
-    if (checkbox.classList.contains("hide")) {
-      checkbox.classList.remove("hide");
-    }
-  });
 
-  //Hide "checked" image
-  const checkboxesFilled = document.querySelectorAll(
-    `.${elementStrings.checkboxesFilled}`
-  );
-  checkboxesFilled.forEach(checkbox => {
-    if (!checkbox.classList.contains("hide")) {
-      checkbox.classList.add("hide");
+  checkboxIcons.forEach(icon => {
+    if (icon.classList.contains(elementStrings.iconChecked)) {
+      icon.classList.remove(elementStrings.iconChecked);
+      icon.classList.add(elementStrings.iconEmpty);
     }
   });
 };
@@ -53,14 +38,35 @@ export const genreFormError = () => {
 
 export const checkCheckbox = input => {
   const genre = input.id;
-  const emptyCheck = document.getElementById(`${genre}-check`);
-  const filledCheck = document.getElementById(`${genre}-check-filled`);
+  const icon = document.getElementById(`${genre}-icon`);
 
   if (input.checked) {
-    emptyCheck.classList.add("hide");
-    filledCheck.classList.remove("hide");
+    if (icon.classList.contains(elementStrings.iconEmpty)) {
+      icon.classList.remove(elementStrings.iconEmpty);
+      icon.classList.add(elementStrings.iconChecked);
+    }
   } else {
-    emptyCheck.classList.remove("hide");
-    filledCheck.classList.add("hide");
+    if (icon.classList.contains(elementStrings.iconChecked)) {
+      icon.classList.remove(elementStrings.iconChecked);
+      icon.classList.add(elementStrings.iconEmpty);
+    }
+  }
+};
+
+export const checkboxAddFocus = input => {
+  const genre = input.id;
+  const icon = document.getElementById(`${genre}-icon`);
+
+  if (!icon.classList.contains("form__checkbox-focus")) {
+    icon.classList.add("form__checkbox-focus");
+  }
+};
+
+export const checkboxRemoveFocus = input => {
+  const genre = input.id;
+  const icon = document.getElementById(`${genre}-icon`);
+
+  if (icon.classList.contains("form__checkbox-focus")) {
+    icon.classList.remove("form__checkbox-focus");
   }
 };

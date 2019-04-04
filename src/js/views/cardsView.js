@@ -21,9 +21,9 @@ export const clearCards = () => {
 
 const cardHTML = cardObj => {
   const markup = `<div class="card">
-        <i class="fas fa-window-close btn-close card__close" data-id="${
+        <button class="fas fa-window-close btn-close card__close" data-id="${
           cardObj.id
-        }"></i>
+        }"></button>
         <img class="card__img" src="${cardObj.image}" />
         <div class="card__heading">
             <h4 class="card__heading-span">${limitStringLength(

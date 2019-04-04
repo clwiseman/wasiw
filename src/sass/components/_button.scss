@@ -68,15 +68,20 @@
     color: $color-red;
     font-size: 2rem;
     cursor: pointer;
+    background: none;
+    padding: 0;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
+    outline: none;
     transform: translateY(-2px);
-    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.3);
   }
 
   &:active {
+    outline: none;
     transform: translateY(-1px);
-    box-shadow: 0 0.3rem 1rem rgba($color-black, 0.2);
+    box-shadow: 0 0.3rem 1rem rgba($color-black, 0.3);
   }
 }

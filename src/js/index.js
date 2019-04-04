@@ -156,6 +156,22 @@ window.addEventListener("load", async () => {
 });
 
 /**
+RUNS ON CHECKBOX FOCUS (KEYBOARD ACCESSIBILITY)
+*/
+
+elements.genreForm.addEventListener("focusin", e => {
+  if (e.target.matches("[type=checkbox]")) {
+    genreView.checkboxAddFocus(e.target);
+  }
+});
+
+elements.genreForm.addEventListener("focusout", e => {
+  if (e.target.matches("[type=checkbox]")) {
+    genreView.checkboxRemoveFocus(e.target);
+  }
+});
+
+/**
 RUNS ON CHECKBOX CHECK
 */
 

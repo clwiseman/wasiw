@@ -9,8 +9,9 @@ export const elements = {
 
 export const elementStrings = {
   checkboxes: "form__checkbox-input",
-  checkboxesEmpty: "form__checkbox-custom",
-  checkboxesFilled: "form__checkbox-custom--checked",
+  checkboxIcon: "form__checkbox-icon",
+  iconEmpty: "fa-square",
+  iconChecked: "fa-check-square",
   cardClose: "card__close"
 };
 
