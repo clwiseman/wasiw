@@ -161,13 +161,51 @@ RUNS ON CHECKBOX FOCUS (KEYBOARD ACCESSIBILITY)
 
 elements.genreForm.addEventListener("focusin", e => {
   if (e.target.matches("[type=checkbox]")) {
+    //Add focus visual on checkbox icon
     genreView.checkboxAddFocus(e.target);
   }
 });
 
 elements.genreForm.addEventListener("focusout", e => {
   if (e.target.matches("[type=checkbox]")) {
+    //Remove focus visual on checkbox icon
     genreView.checkboxRemoveFocus(e.target);
+  }
+});
+
+/**
+RUNS ON HOVER OVER CHECKBOX OR ICON
+*/
+
+elements.genreForm.addEventListener("mouseover", e => {
+  if (e.target.matches(`.${elementStrings.checkboxLabel}`)) {
+    //Add focus visual on checkbox icon when hovered on label
+    const genre = e.target.textContent;
+    const input = document.getElementById(genre);
+
+    genreView.checkboxAddFocus(input);
+  } else if (e.target.matches(`.${elementStrings.checkboxIcon}`)) {
+    //Add focus visual on checkbox icon when hovered on icon
+    const [genre, icon] = e.target.id.split("_");
+    const input = document.getElementById(genre);
+
+    genreView.checkboxAddFocus(input);
+  }
+});
+
+elements.genreForm.addEventListener("mouseout", e => {
+  if (e.target.matches(`.${elementStrings.checkboxLabel}`)) {
+    //Remove focus visual on checkbox icon when not hovered label
+    const genre = e.target.textContent;
+    const input = document.getElementById(genre);
+
+    genreView.checkboxRemoveFocus(input);
+  } else if (e.target.matches(`.${elementStrings.checkboxIcon}`)) {
+    //Remove focus visual on checkbox icon when not hovered on icon
+    const [genre, icon] = e.target.id.split("_");
+    const input = document.getElementById(genre);
+
+    genreView.checkboxRemoveFocus(input);
   }
 });
 
@@ -177,7 +215,15 @@ RUNS ON CHECKBOX CHECK
 
 elements.genreForm.addEventListener("click", e => {
   if (e.target.matches("[type=checkbox]")) {
-    genreView.checkCheckbox(e.target);
+    //If click on checkbox, check/uncheck icon
+    genreView.checkCheckbox(e.target, e.target.id);
+  } else if (e.target.matches(`.${elementStrings.checkboxIcon}`)) {
+    //If click on icon itself, check/uncheck checkbox and check/uncheck icon
+    const [genre, icon] = e.target.id.split("_");
+    const input = document.getElementById(genre);
+
+    genreView.toggleCheck(input);
+    genreView.checkCheckbox(input, genre);
   }
 });
 

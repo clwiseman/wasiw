@@ -10,6 +10,7 @@ export const elements = {
 export const elementStrings = {
   checkboxes: "form__checkbox-input",
   checkboxIcon: "form__checkbox-icon",
+  checkboxLabel: "form__checkbox-label",
   iconEmpty: "fa-square",
   iconChecked: "fa-check-square",
   cardClose: "card__close"
