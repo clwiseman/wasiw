@@ -14,6 +14,8 @@ import {
 } from "./views/base";
 import axios from "axios";
 
+import "../sass/main.scss";
+
 /** Global state of the app
  * genres: list of genres
  * anime: search results for selected genre
