@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-139332678-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-139332678-1");
+    </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -21,7 +36,7 @@
     <link
       rel="shortcut icon"
       type="image/png"
-      href="<%=require('./img/logo.png')%>"
+      href="<%=require('./img/logotiny.png')%>"
     />
 
     <title>What Anime Should I Watch? | Anime Recommendation Engine</title>
