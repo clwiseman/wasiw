@@ -24,9 +24,6 @@ import "../sass/main.scss";
 
 const state = {};
 
-/******************* TESTING - REMOVE BEFORE LIVE **********************/
-window.l = state;
-
 /**
  API REQUEST FUNCTION
  */
