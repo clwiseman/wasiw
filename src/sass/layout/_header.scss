@@ -5,10 +5,20 @@
       rgba($color-primary-dark, 0.9),
       rgba($color-primary, 0.9)
     ),
-    url("../img/traditionalhouse.jpg");
+    url("../img/traditionalhouse-small.jpg");
   background-size: cover;
   background-position: 0% 65%;
   position: relative;
+
+  @media (min-resolution: 192dpi) and (min-width: 37.5em),
+    (min-width: 156.25em) {
+    background-image: linear-gradient(
+        to right top,
+        rgba($color-primary-dark, 0.9),
+        rgba($color-primary, 0.9)
+      ),
+      url("../img/traditionalhouse.jpg");
+  }
 
   @include respond(large) {
     height: 24rem;

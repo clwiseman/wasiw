@@ -19,13 +19,23 @@
       rgba($color-secondary, 0.9),
       rgba($color-secondary-dark, 0.9)
     ),
-    url("../img/marketstreet.jpg");
+    url("../img/marketstreet-small.jpg");
   background-size: cover;
   background-position: bottom;
   padding: 2rem 0 5rem 0;
 
   animation-name: stretchFromTop;
   animation-duration: 0.3s;
+
+  @media (min-resolution: 192dpi) and (min-width: 37.5em),
+    (min-width: 156.25em) {
+    background-image: linear-gradient(
+        to right top,
+        rgba($color-secondary, 0.9),
+        rgba($color-secondary-dark, 0.9)
+      ),
+      url("../img/marketstreet.jpg");
+  }
 
   &__heading {
     font-family: "Cinzel", serif;
